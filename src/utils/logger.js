@@ -24,9 +24,6 @@ const logger = createLogger({
     new transports.Console(),
     new transports.MongoDB({
       db: process.env.DB_URL,
-      options: {
-        useUnifiedTopology: true,
-      },
     }),
   ],
 });

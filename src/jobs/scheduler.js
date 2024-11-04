@@ -3,7 +3,7 @@ const { updateEligibleCriteria } = require("../services/token.service");
 const { updateSolToUsd } = require("../services/config.service");
 
 exports.scheduleJobs = () => {
-  cron.schedule("*/7 * * * *", async () => {
+  cron.schedule("*/2 * * * *", async () => {
     try {
       console.log("Scheduled task running...");
       await updateEligibleCriteria();

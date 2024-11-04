@@ -1,5 +1,6 @@
 const Token = require("../models/Token");
 const { getConfigValue } = require("./config.service");
+const { addEligibleToken } = require("./eligibleToken.service");
 
 exports.createToken = async (tokenDetails) => {
   const solToUsd = await getConfigValue();
@@ -31,12 +32,11 @@ exports.updateMarketCap = async (tokenDetails) => {
 };
 
 exports.updateEligibleCriteria = async () => {
-  const tokens = await Token.find();
+  const tokens = await Token.find().select("-_id -__v -createdAt");
 
   for (let i = 0; i < tokens.length; i++) {
     if (Number(tokens[i].marketCapUsd) >= 12000) {
-      tokens[i].isEligible = true;
-      await tokens[i].save();
+      await addEligibleToken(tokens[i])
     }
   }
 };

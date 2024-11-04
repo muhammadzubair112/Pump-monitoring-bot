@@ -50,11 +50,10 @@ const tokenSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-    index: { expires: '24h' }
+    default: Date.now
   }
 });
 
-const Token = mongoose.model('Token', tokenSchema);
+const EligibleToken = mongoose.model('EligibleToken', tokenSchema);
 
-module.exports = Token;
+module.exports = EligibleToken;
