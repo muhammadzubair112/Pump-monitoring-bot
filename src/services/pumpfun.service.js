@@ -19,7 +19,7 @@ exports.initializeWebSocket = () => {
     setInterval(async () => {
         const tokens = await getTokens();
         const keys = tokens.map((token) => token.mint);
-        if (keys.length) {
+        if (keys.length > 0) {
           ws.send(
             JSON.stringify({
               method: "subscribeTokenTrade",
